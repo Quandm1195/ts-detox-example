@@ -1,5 +1,5 @@
-import detox from "detox";
-import adapter from "detox/runners/jest/adapter";
+import { cleanup, init } from "detox";
+import * as adapter from "detox/runners/jest/adapter";
 
 const config = require("../package.json").detox;
 
@@ -7,7 +7,7 @@ jest.setTimeout(120000);
 jasmine.getEnv().addReporter(adapter);
 
 beforeAll(async () => {
-  await detox.init(config, { initGlobals: false });
+  await init(config, { initGlobals: false });
 });
 
 beforeEach(async () => {
@@ -16,5 +16,5 @@ beforeEach(async () => {
 
 afterAll(async () => {
   await adapter.afterAll();
-  await detox.cleanup();
+  await cleanup();
 });
